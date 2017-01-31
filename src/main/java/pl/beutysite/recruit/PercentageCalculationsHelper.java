@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-public class TaxCalculationsHelper {
+public class PercentageCalculationsHelper {
 
     private final static int CURRENCY_SCALE=2;
     private final static MathContext mathContext=new MathContext(CURRENCY_SCALE, RoundingMode.UP);

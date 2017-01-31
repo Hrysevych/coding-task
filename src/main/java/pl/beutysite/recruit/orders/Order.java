@@ -2,16 +2,17 @@ package pl.beutysite.recruit.orders;
 
 import pl.beutysite.recruit.SeriousEnterpriseEventBus;
 import pl.beutysite.recruit.SeriousEnterpriseEventBusLookup;
-import pl.beutysite.recruit.TaxCalculationsHelper;
+import pl.beutysite.recruit.PercentageCalculationsHelper;
 
 import java.math.BigDecimal;
 import java.util.Random;
 
-public class Order {
+public abstract class Order {
     private final int itemId;
     private final int customerId;
     private final BigDecimal price;
 
+    private final BigDecimal STANDARD_TAX = new BigDecimal(23.5);
     //for performance reasons lets pre-calculate it in constructor
     private int preCalculatedHashCode = 0;
 
@@ -48,8 +49,7 @@ public class Order {
     }
 
     public BigDecimal getTax() {
-        //calculating standard tax - 23.5%
-        return TaxCalculationsHelper.getPercentagePart(getPrice(), new BigDecimal("23.5"));
+        return PercentageCalculationsHelper.getPercentagePart(getPrice(), STANDARD_TAX);
     }
 
     @Override
