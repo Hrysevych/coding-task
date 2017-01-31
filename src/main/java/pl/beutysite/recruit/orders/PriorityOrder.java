@@ -2,11 +2,13 @@ package pl.beutysite.recruit.orders;
 
 import pl.beutysite.recruit.SeriousEnterpriseEventBus;
 import pl.beutysite.recruit.SeriousEnterpriseEventBusLookup;
-import pl.beutysite.recruit.TaxCalculationsHelper;
+import pl.beutysite.recruit.PercentageCalculationsHelper;
 
 import java.math.BigDecimal;
 
 public class PriorityOrder extends Order {
+
+    static final BigDecimal PRIORITY_ORDER_FEE = new BigDecimal("1.5");
 
     public PriorityOrder(int itemId, int customerId, BigDecimal price) {
         super(itemId, customerId, price);
@@ -24,7 +26,7 @@ public class PriorityOrder extends Order {
 
     @Override
     public BigDecimal getPrice() {
-        //adding priority order fee - 1.5%
-        return TaxCalculationsHelper.addPercentage(super.getPrice(),new BigDecimal("1.5"));
+
+        return PercentageCalculationsHelper.addPercentage(super.getPrice(), PRIORITY_ORDER_FEE);
     }
 }
